@@ -6,64 +6,70 @@ namespace Task_4._6
 {
     class Program
     {
-        delegate int[] ConditionSearch(int[] mass);
+
         static void Main(string[] args)
         {
             int[] mass = new int[] { 45, 3, 4,-68, 12, -35, 47, -8, 1 };
-            //ConditionSearch search = new ConditionSearch(SearchPositiveNumbers);
-            //ConditionSearch search = delegate (int[] arr) { return SearchPositiveNumbers(mass); };
-            ConditionSearch search = (int[] arr) => SearchNegativeNumbers(mass);
-            int[] result = search(mass);
-            foreach (int c in result) Console.Write($"{c} ");
+            Predicate<int> condition = new Predicate<int>(IsPositive);
+            int[] result1 = GetByCondition(mass,condition);
+            Console.WriteLine("By delegate instance:");
+            Print(result1);
+            int[] result2 = GetByCondition(mass, delegate (int x) { return IsPositive(x); });
+            Console.WriteLine("By anonymus method:");
+            Print(result2);
+            int[] result3 = GetByCondition(mass, (int x) => IsPositive(x));
+            Console.WriteLine("By lambda:");
+            Print(result1);
+            int[] result4 = SearchPositiveByLinq(mass);
+            Console.WriteLine("By LINQ:");
+            Print(result1);
             Console.ReadKey();
         }
 
         static int[] SearchPositiveNumbers(int[] mass)
         {
-            int size=0;
-            int index = 0;
-            foreach (int number in mass) if (number > 0) size++;
-            int[] resultArray = new int[size];
+            List<int> positive = new List<int>();
             foreach (int number in mass)
             {
                 if (number > 0)
                 {
-                    resultArray[index] = number;
-                    index++;
+                    positive.Add(number);
                 }
             }
-            return resultArray;
+            return positive.ToArray();
         }
 
-        static int[] SearchNegativeNumbers(int[] mass)
+        static int[] SearchPositiveByLinq(int[] mass)
         {
-            int size = 0;
-            int index = 0;
-            foreach (int number in mass) if (number < 0) size++;
-            int[] resultArray = new int[size];
-            foreach (int number in mass)
-            {
-                if (number < 0)
-                {
-                    resultArray[index] = number;
-                    index++;
-                }
-            }
-            return resultArray;
-        }
-
-        static void SearchLinq(int[] mass)
-        {
-            var result = from n in mass
+            var result = (from n in mass
                          where n > 0
-                         select n;
+                         select n).ToArray();
+            return result;
         }
 
-        //public static int[] SearchByDelegate(int[] mass,Func<int[],int[]> search)
-        //{
-        //    return search(mass);
-        //}
+        static int[] GetByCondition(int[] mass,Predicate<int> condition)
+        {
+            List<int> passed = new List<int>();
+            if (condition == null)
+            {
+                throw new ArgumentException("No condition");
+            }
+            foreach (int elem in mass)
+            {
 
+                if (condition.Invoke(elem)) passed.Add(elem);
+            }
+            return passed.ToArray();
+        }
+        static bool IsPositive(int x) { return x > 0; }
 
+        static void Print(int[] mass)
+        {
+            foreach (int num in mass)
+            {
+                Console.Write($"{num} ");
+            }
+            Console.WriteLine();
+        }
     }
 }
