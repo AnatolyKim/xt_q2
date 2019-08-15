@@ -22,7 +22,7 @@ namespace Task_4._6
             Print(result1);
             int[] result4 = SearchPositiveByLinq(mass);
             Console.WriteLine("By LINQ:");
-            Print(result1);
+            Print(result4);
             Console.ReadKey();
         }
 
