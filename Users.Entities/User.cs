@@ -9,10 +9,12 @@ namespace Users.Entities
 {
     public class User
     {
+        public int ID { get; set; }
         public string Name { get; private set; }
         public DateTime BirthDate { get; private set; }
         public int Age { get; private set; }
 
+        public List<string> Awards = new List<string>();
         public string ErrorMessage { get; private set; }
 
         public bool SetName(string input)
@@ -37,7 +39,6 @@ namespace Users.Entities
             {
                 BirthDate=DateTime.ParseExact(input, "dd.MM.yyyy",CultureInfo.InvariantCulture);
                 return true;
-
             }
             catch(FormatException)
             {

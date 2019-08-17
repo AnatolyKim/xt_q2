@@ -16,12 +16,16 @@ namespace UserManager.BLL
         {
             MemoryStorage.Add(user);
         }
-        
+        public void AddAward(Award award)
+        {
+            MemoryStorage.AddAward(award);
+        }
+
         public bool RemoveUser(string ID)
         {
             if(int.TryParse(ID,out int id) 
-                && id>=0
-                && id < MemoryStorage.Users.Count)
+                && id>0
+                && id <= MemoryStorage.Users.Count)
             {
                 MemoryStorage.Remove(id);
                 return true;
@@ -37,6 +41,16 @@ namespace UserManager.BLL
         public ICollection<User> GetAllUsers()
         {
             return MemoryStorage.GetAll();
+        }
+
+        public ICollection<Award> GetAwardList()
+        {
+            return MemoryStorage.GetAllAwards();
+        }
+
+        public void AwardUser(int award, int userID)
+        {
+            MemoryStorage.AwardUser(award, userID);
         }
     }
 }
