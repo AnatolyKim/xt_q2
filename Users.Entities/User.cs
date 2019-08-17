@@ -4,15 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 namespace Users.Entities
 {
+    [DataContract]
     public class User
     {
+        [DataMember]
         public int ID { get; set; }
+        [DataMember]
         public string Name { get; private set; }
+        [DataMember]
         public DateTime BirthDate { get; private set; }
+        [DataMember]
         public int Age { get; private set; }
+        [DataMember]
 
         public List<string> Awards = new List<string>();
         public string ErrorMessage { get; private set; }

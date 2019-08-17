@@ -14,7 +14,6 @@ namespace Users.PL
         static void Main(string[] args)
         {
             SelectAction();
-            Console.ReadKey();
         }
 
         private static void SelectAction()

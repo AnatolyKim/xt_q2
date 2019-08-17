@@ -23,9 +23,9 @@ namespace UserManager.BLL
 
         public bool RemoveUser(string ID)
         {
-            if(int.TryParse(ID,out int id) 
-                && id>0
-                && id <= MemoryStorage.Users.Count)
+            if (int.TryParse(ID, out int id)
+                && id > 0
+                && id <= MemoryStorage.Users.Last().ID)
             {
                 MemoryStorage.Remove(id);
                 return true;
@@ -42,7 +42,7 @@ namespace UserManager.BLL
         {
             if (int.TryParse(ID, out int id)
                 && id > 0
-                && id <= MemoryStorage.AwardList.Count)
+                && id <= MemoryStorage.AwardList.Last().AwardID)
             {
                 MemoryStorage.RemoveAward(id);
                 return true;

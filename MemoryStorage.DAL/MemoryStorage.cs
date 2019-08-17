@@ -5,61 +5,57 @@ using System.Text;
 using System.Threading.Tasks;
 using Users.Entities;
 using System.IO;
+using System.Runtime.Serialization.Json;
 
 namespace Storage.DAL
 {
     public static class MemoryStorage
     {
-        static string writePath = @"D:\Sample\Users.txt";
-        static string writeAwardsPath = @"D:\Sample\Awards.txt";
-        public static int UserIndex { get; private set; }
-        public static int AwardIndex { get; private set; }
+        static string writePath = @"D:\Sample\Users.json";
+        static string writeAwardsPath = @"D:\Sample\Awards.json";
         public static List<User> Users { get; private set; }
         public static List<Award> AwardList { get; private set; }
         static MemoryStorage()
         {
             Users = new List<User>();
             AwardList = new List<Award>();
+            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<User>));
+            using (FileStream fs = new FileStream(writePath, FileMode.OpenOrCreate))
+            {
+                if (new FileInfo(writePath).Length != 0) Users = (List<User>)jsonFormatter.ReadObject(fs);
+            }
+            DataContractJsonSerializer jsonFormatterAward = new DataContractJsonSerializer(typeof(List<Award>));
+            using (FileStream fs = new FileStream(writeAwardsPath, FileMode.OpenOrCreate))
+            {
+                if (new FileInfo(writeAwardsPath).Length != 0) AwardList = (List<Award>)jsonFormatterAward.ReadObject(fs);
+            }
         }
-
         public static void Add(User user)
         {
+            if (Users.Count!=0) user.ID = Users.Last().ID+1;
+            else user.ID = 1;
             Users.Add(user);
-            user.ID=++UserIndex;
-            WriteToFile(user);
+            WriteToJson(Users);
         }
 
         public static void AddAward(Award award)
         {
+            if (AwardList.Count != 0) award.AwardID = AwardList.Last().AwardID + 1;
+            else award.AwardID= 1;
             AwardList.Add(award);
-            award.AwardID = ++AwardIndex;
-            WriteToFile(award);
+            WriteToJson(AwardList);
         }
 
         public static void Remove(int id)
         {
             foreach (var n in Users.Where(User => User.ID == id).ToArray()) Users.Remove(n);
-            using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
-            {
-                foreach (var user in Users)
-                {
-                    string data = $"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}--Age: {user.Age}";
-                    sw.WriteLine(data);
-                }
-            }
+            WriteToJson(Users);
         }
 
         public static void RemoveAward(int id)
         {
             foreach (var n in AwardList.Where(Award => Award.AwardID == id).ToArray()) AwardList.Remove(n);
-            using (StreamWriter sw = new StreamWriter(writeAwardsPath, false, System.Text.Encoding.Default))
-            {
-                foreach (var award in AwardList)
-                {
-                    string data = $"ID: {award.AwardID}--Name: {award.Title}";
-                    sw.WriteLine(data);
-                }
-            }
+            WriteToJson(AwardList);
         }
 
         public static ICollection<User> GetAll()
@@ -72,36 +68,31 @@ namespace Storage.DAL
             return AwardList;
         }
 
-        public static void WriteToFile(User user)
-        {
-            string data = $"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}--Age: {user.Age}";
-            using (StreamWriter sw = new StreamWriter(writePath, true, System.Text.Encoding.Default))
-            {
-                sw.WriteLine(data);
-            }
-        }
-
-        public static void WriteToFile(Award award)
-        {
-            string data = $"ID: {award.AwardID}--Name: {award.Title}";
-            using (StreamWriter sw = new StreamWriter(writeAwardsPath, true, System.Text.Encoding.Default)) sw.WriteLine(data);
-        }
-
         public static void AwardUser(int awardID, int userID)
         {
             foreach (var user in Users.Where(User => User.ID == userID).ToArray())
             {
                 foreach (var n in AwardList.Where(Award => Award.AwardID == awardID).ToArray()) user.Awards.Add(n.Title);
             }
-            using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+            WriteToJson(Users);
+
+        }
+
+        public static void WriteToJson(List<User> users)
+        {
+            using (FileStream fs = new FileStream(writePath, FileMode.OpenOrCreate))
             {
-                foreach(var user in Users)
-                {
-                    string data = $"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}--Age: {user.Age}--Awards: ";
-                    sw.Write(data);
-                    foreach (var award in user.Awards) sw.Write($"{award} ");
-                    sw.WriteLine();
-                }
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<User>));
+                jsonFormatter.WriteObject(fs, users);
+            }
+        }
+
+        public static void WriteToJson(List<Award> awards)
+        {
+            using (FileStream fs = new FileStream(writeAwardsPath, FileMode.OpenOrCreate))
+            {
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<Award>));
+                jsonFormatter.WriteObject(fs, awards);
             }
         }
     }
