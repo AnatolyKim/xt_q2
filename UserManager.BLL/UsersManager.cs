@@ -38,6 +38,23 @@ namespace UserManager.BLL
 
         }
 
+        public bool RemoveAward(string ID)
+        {
+            if (int.TryParse(ID, out int id)
+                && id > 0
+                && id <= MemoryStorage.AwardList.Count)
+            {
+                MemoryStorage.RemoveAward(id);
+                return true;
+            }
+            else
+            {
+                ErrorMessage = "Input correct ID. Award wasn't deleted";
+                return false;
+            }
+
+        }
+
         public ICollection<User> GetAllUsers()
         {
             return MemoryStorage.GetAll();

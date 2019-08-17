@@ -43,7 +43,20 @@ namespace Storage.DAL
             {
                 foreach (var user in Users)
                 {
-                    string data = $"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}-- Age: {user.Age}";
+                    string data = $"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}--Age: {user.Age}";
+                    sw.WriteLine(data);
+                }
+            }
+        }
+
+        public static void RemoveAward(int id)
+        {
+            foreach (var n in AwardList.Where(Award => Award.AwardID == id).ToArray()) AwardList.Remove(n);
+            using (StreamWriter sw = new StreamWriter(writeAwardsPath, false, System.Text.Encoding.Default))
+            {
+                foreach (var award in AwardList)
+                {
+                    string data = $"ID: {award.AwardID}--Name: {award.Title}";
                     sw.WriteLine(data);
                 }
             }
@@ -61,7 +74,7 @@ namespace Storage.DAL
 
         public static void WriteToFile(User user)
         {
-            string data = $"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}-- Age: {user.Age}";
+            string data = $"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}--Age: {user.Age}";
             using (StreamWriter sw = new StreamWriter(writePath, true, System.Text.Encoding.Default))
             {
                 sw.WriteLine(data);
@@ -84,7 +97,7 @@ namespace Storage.DAL
             {
                 foreach(var user in Users)
                 {
-                    string data = $"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}-- Age: {user.Age}-- Awards: ";
+                    string data = $"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}--Age: {user.Age}--Awards: ";
                     sw.Write(data);
                     foreach (var award in user.Awards) sw.Write($"{award} ");
                     sw.WriteLine();

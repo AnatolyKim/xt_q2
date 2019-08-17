@@ -24,12 +24,13 @@ namespace Users.PL
             Console.WriteLine("2 - Remove user");
             Console.WriteLine("3 - Show all users");
             Console.WriteLine("4 - Add new award");
-            Console.WriteLine("5 - Show award list");
-            Console.WriteLine("6 - Award user");
-            Console.WriteLine("7 - Exit");
+            Console.WriteLine("5 - Remove award");
+            Console.WriteLine("6 - Show award list");
+            Console.WriteLine("7 - Award user");
+            Console.WriteLine("8 - Exit");
 
             if (int.TryParse(Console.ReadLine(), out int selectedAction)
-                &&selectedAction<8
+                &&selectedAction<9
                 &&selectedAction>0)
             {
                 switch (selectedAction)
@@ -51,6 +52,7 @@ namespace Users.PL
                         SelectAction();
                         break;
                     case 2:
+                        Console.WriteLine("Input user ID:");
                         if (UserManager.RemoveUser(Console.ReadLine()) == false) Print(UserManager.ErrorMessage);
                         SelectAction();
                         break;
@@ -67,11 +69,16 @@ namespace Users.PL
                         SelectAction();
                         break;
                     case 5:
+                        Console.WriteLine("Input award ID:");
+                        if (UserManager.RemoveAward(Console.ReadLine()) == false) Print(UserManager.ErrorMessage);
+                        SelectAction();
+                        break;
+                    case 6:
                         ICollection<Award> awards = UserManager.GetAwardList();
                         PrintAwardList(awards);
                         SelectAction();
                         break;
-                    case 6:
+                    case 7:
                         Console.WriteLine("Select award by ID:");
                         ICollection<Award> awardlist = UserManager.GetAwardList();
                         PrintAwardList(awardlist);
@@ -83,7 +90,7 @@ namespace Users.PL
                         UserManager.AwardUser(selectedAwardID, selectedUser);
                         SelectAction();
                         break;
-                    case 7:
+                    case 8:
                         return;
                 }
             }
@@ -98,7 +105,7 @@ namespace Users.PL
         {
             foreach (var user in users)
             {
-                Console.Write($"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}--Age: {user.Age}-- Awards: ");
+                Console.Write($"ID: {user.ID}--Name: {user.Name}--Birth Date: {user.BirthDate.ToString("dd.MM.yyyy")}--Age: {user.Age}--Awards: ");
                 foreach (var award in user.Awards) Console.Write($"{award} ");
                 Console.WriteLine();
             }
