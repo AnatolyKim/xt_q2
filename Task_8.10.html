@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+   <head> 
+     <title>Мои настройки</title>
+	 <meta charset="utf-8">
+	 <meta name="description" content="settings">
+	 <link rel="stylesheet" type="text/css" href="styles_8.10.css"/>
+	 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.0/css/all.css">
+	 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> 
+   </head>
+   <body>
+     <header>
+	    <a href="#" id="logo"><i class="fab fa-vk"></i></a>
+		<div id="input">
+		    <input type="text" id="search" value="Поиск">
+			<i class="fas fa-search"></i>
+		</div>
+		<a href="#" id="bell"><i class="fas fa-bell"></i></a>
+		<div id="player">
+		<a href="#" id="previous"><i class="fas fa-step-backward"></i></a>
+		<a href="#" id="play"><i class="fas fa-play"></i></a>
+		<a href="#" id="next"><i class="fas fa-step-forward"></i></a>
+		<a href="#"id="artist">Muse - Starlight</a>
+		</div>
+        <div  id="user">
+		   <a>Имя</a>
+		   <i class="fas fa-user-circle"></i>
+		</div>
+	 </header>
+	 <nav id="left">
+	    <ul id="leftmenu">
+	       <li id="basepage"><a href="#"><i class="fas fa-home"></i><p>Моя страница</p></a></li>
+		   <li id="news"><a href="#"><i class="far fa-newspaper"></i><p>Новости</p></a></li>
+		   <li id="messages"><a href="#"><i class="fas fa-comments"></i><p>Сообщения</p></a></li>
+		   <li id="friends"><a href="#"><i class="fas fa-user"></i><p>Друзья</p></a></li>
+		   <li id="communities"><a href="#"><i class="fas fa-user-friends"></i><p>Сообщества</p></a></li>
+		   <li id="photos"><a href="#"><i class="fas fa-camera"></i><p>Фотографии</p></a></li>
+		   <li id="music"><a href="#"><i class="fas fa-music"></i><p>Музыка</p></a></li>
+		   <li id="video"><a href="#"><i class="fas fa-film"></i><p>Видео</p></a></li>
+		   <li id="games"><a href="#"><i class="fas fa-gamepad"></i><p>Игры</p></a></li>
+		   <li id="vkpay"><a href="#"><i class="fas fa-ruble-sign"></i><p>VK pay</p></a></li>
+		   <li id="goods"><a href="#"><i class="fas fa-shopping-bag"></i><p>Товары</p></a></li>
+		   <li id="documents"><a href="#"><i class="fas fa-copy"></i><p>Документы</p></a></li>
+	     </ul>
+	 </nav>
+	 <nav id="right">
+	     <ul id="rightmenu">
+		    <li id="general"><a href="#" >Общее</a></li>
+			<li><a href="#" id="safety">Безопасность</a></li>
+			<li><a href="#" id="privacy">Приватность</a></li>
+			<li><a href="#" id="notifications">Уведомления</a></li>
+			<li><a href="#" id="blacklist">Черный список</a></li>
+			<li><a href="#" id="appsettings">Настройки приложений</a></li>
+			<li><a href="#" id="mobileservices">Мобильные сервисы</a></li>
+			<li><a href="#" id="payments">Платежи, подписки, переводы</a></li>
+		 </ul>
+	 </nav>
+	 <main>
+	     <div id="title">Общее</div>
+		 <div id="menu">
+		    <label>Меню сайта </label>
+			<a href="#" id="setview">Настроить отображение пунктов меню</a>
+		 </div>
+		 <div id="profilesettings">
+		    <label>Настройки профиля </label>
+			<ul>
+			    <li><input type="checkbox"/><label>Скрывать блок подарков</label></li>
+				<li><input type="checkbox"/><label>При открытии профиля показывать мои записи</label></li>
+				<li><input type="checkbox"/><label>Отключить комментирование записей</label></li>
+				<li><input type="checkbox"/><label>Специальные возможности</label></li>
+			</ul>
+		 </div>
+		 <div id="contentsettings">
+		    <label>Настройки контента </label>
+			<ul>
+			    <li><input type="checkbox"/><label>Автоматически воспроизводить видео</label></li>
+				<li><input type="checkbox"/><label>Автоматически воспроизводить GIF-анимации </label></li>
+				<li><input type="checkbox"/><label>Подсказывать стикеры в полях ввода</label></li>
+				<li><input type="checkbox"/><label>Автоматически отмечать друзей на фотографиях</label></li>
+				<li><p id="sorting">Сортировка комментариев: <a href="#" id="setsort">сначала интересные</a><p></li>
+				<li><a href="#" id="viewblock">Посмотреть заблокированные приложения</a></li>
+			</ul>
+		 </div>
+		 <div id="password">
+		    <label>Пароль</label>
+			<a href="#" id="passwordset">обновлен три года назад</a>
+			<a href="#" id="change">Изменить</a>
+		 </div>
+		 <div id="email">
+		    <label>Электронная почта</label>
+			<a href="#" id="emailset">не указана</a>
+			<a href="#" id="add">Добавить</a>
+		 </div>
+		 <div id="phonenumber">
+		    <label>Номер телефона</label>
+			<a href="#" id="numberset">+7 *** *** ** 90</a>
+			<a href="#" id="change">Изменить</a>
+		 </div>
+		 <div id="url">
+            <label>Адрес страницы</label>
+			<a href="#" id="urlset">https://vk.com/user</a>
+			<a href="#" id="change">Изменить</a>
+		 </div>
+		 <div id="language">
+		    <label>Язык</label>
+			<a href="#" id="languageset">Русский</a>
+			<a href="#" id="change">Изменить</a>
+		 </div>
+		 <div id="delete">
+		    <p>Вы можете <a href="#" id="delpage">удалить свою страницу</a><p>
+		 </div>
+	 </main> 
+	 <footer></footer>
+   </body>
+
+</html>
