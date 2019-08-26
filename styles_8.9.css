@@ -1,0 +1,68 @@
+html,body{
+  height: 100%;
+  width:100%;
+  margin: 0;
+}
+div>input{
+  float:left;
+  border: 0;
+  padding:0;
+  height: 40px;
+  width: 150px;
+  background: linear-gradient(to top,#DADFDC,#C1C1C1);
+  font-family: Arial;
+  font-size: 110%;
+  position: relative;
+}
+#steps{
+  width: 600px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+.separator {
+  height: 20px; 
+  width: 7px; 
+  position: absolute;
+}
+.separator:before{
+  content: "";
+  height: 20px; 
+  width: 7px;
+  position: absolute; 
+  top: 0;
+  background: #FFF;
+}
+.separator:after {
+  content: "";
+  height: 20px; 
+  width: 7px;
+  position: absolute;
+  margin-top: 20px;
+  margin-left: -5px;
+  background: #FFF;
+}
+.separator:before {
+  transform: skew(20deg, 0deg);
+}
+.separator:after {
+  right: 0;
+  transform: skew(-20deg, 0deg);
+}
+#first{
+  margin-left: 146px;
+  z-index: 1;
+}
+#second{
+  margin-left: 296px;
+  z-index: 1;
+}
+#third{
+  margin-left: 446px;
+  z-index: 1;
+}
+div>input:hover{
+  background: linear-gradient(to top,#AEE183,#6AC527);
+  color: white;
+}
