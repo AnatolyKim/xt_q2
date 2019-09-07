@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79712192-F1E1-4E57-897D-8EEB3EE58FCC}</ProjectGuid>
+    <ProjectGuid>{A9E337B9-5464-4040-82D9-1DAFC9B04981}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Users.PL</RootNamespace>
-    <AssemblyName>Users.PL</AssemblyName>
+    <RootNamespace>AwardsManager</RootNamespace>
+    <AssemblyName>AwardsManager</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,25 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsolePL.cs" />
+    <Compile Include="AwardsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AwardManager.BLL\AwardManager.BLL.csproj">
-      <Project>{c60d8ae1-8e24-474a-bb60-cd8080c12e2e}</Project>
-      <Name>AwardManager.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UserManager.BLL\UserManager.BLL.csproj">
-      <Project>{5706cc0d-c206-4487-87a3-ff1e0845f3bc}</Project>
-      <Name>UserManager.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Users.Entities\Users.Entities.csproj">
-      <Project>{b2c40c72-55ae-43aa-bec4-3de438fff4b0}</Project>
-      <Name>Users.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

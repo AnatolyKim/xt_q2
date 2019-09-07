@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79712192-F1E1-4E57-897D-8EEB3EE58FCC}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Users.PL</RootNamespace>
-    <AssemblyName>Users.PL</AssemblyName>
+    <ProjectGuid>{C60D8AE1-8E24-474A-BB60-CD8080C12E2E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AwardManager.BLL</RootNamespace>
+    <AssemblyName>AwardManager.BLL</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,20 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsolePL.cs" />
+    <Compile Include="AwardsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AwardManager.BLL\AwardManager.BLL.csproj">
-      <Project>{c60d8ae1-8e24-474a-bb60-cd8080c12e2e}</Project>
-      <Name>AwardManager.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UserManager.BLL\UserManager.BLL.csproj">
-      <Project>{5706cc0d-c206-4487-87a3-ff1e0845f3bc}</Project>
-      <Name>UserManager.BLL</Name>
+    <ProjectReference Include="..\MemoryStorage.DAL\Storage.DAL.csproj">
+      <Project>{2260fa73-da0e-4f75-832e-bf36825ead0a}</Project>
+      <Name>Storage.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Users.Entities\Users.Entities.csproj">
       <Project>{b2c40c72-55ae-43aa-bec4-3de438fff4b0}</Project>

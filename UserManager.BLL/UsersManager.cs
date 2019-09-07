@@ -16,10 +16,6 @@ namespace UserManager.BLL
         {
             MemoryStorage.Add(user);
         }
-        public void AddAward(Award award)
-        {
-            MemoryStorage.AddAward(award);
-        }
 
         public bool RemoveUser(string ID)
         {
@@ -38,36 +34,10 @@ namespace UserManager.BLL
 
         }
 
-        public bool RemoveAward(string ID)
-        {
-            if (int.TryParse(ID, out int id)
-                && id > 0
-                && id <= MemoryStorage.AwardList.Last().AwardID)
-            {
-                MemoryStorage.RemoveAward(id);
-                return true;
-            }
-            else
-            {
-                ErrorMessage = "Input correct ID. Award wasn't deleted";
-                return false;
-            }
-
-        }
-
         public ICollection<User> GetAllUsers()
         {
             return MemoryStorage.GetAll();
         }
 
-        public ICollection<Award> GetAwardList()
-        {
-            return MemoryStorage.GetAllAwards();
-        }
-
-        public void AwardUser(int award, int userID)
-        {
-            MemoryStorage.AwardUser(award, userID);
-        }
     }
 }

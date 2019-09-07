@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Users.Entities;
 using UserManager.BLL;
+using AwardManager.BLL;
 
 namespace Users.PL
 {
     class ConsolePL
     {
         public static UsersManager UserManager { get; } = new UsersManager();
+        public static AwardsManager AwardManager { get; } = new AwardsManager();
         static void Main(string[] args)
         {
             SelectAction();
@@ -64,29 +66,29 @@ namespace Users.PL
                         Award award = new Award();
                         Console.WriteLine("Input title:");
                         award.SetTitle(Console.ReadLine());
-                        UserManager.AddAward(award);
+                        AwardManager.AddAward(award);
                         SelectAction();
                         break;
                     case 5:
                         Console.WriteLine("Input award ID:");
-                        if (UserManager.RemoveAward(Console.ReadLine()) == false) Print(UserManager.ErrorMessage);
+                        if (AwardManager.RemoveAward(Console.ReadLine()) == false) Print(UserManager.ErrorMessage);
                         SelectAction();
                         break;
                     case 6:
-                        ICollection<Award> awards = UserManager.GetAwardList();
+                        ICollection<Award> awards = AwardManager.GetAwardList();
                         PrintAwardList(awards);
                         SelectAction();
                         break;
                     case 7:
                         Console.WriteLine("Select award by ID:");
-                        ICollection<Award> awardlist = UserManager.GetAwardList();
+                        ICollection<Award> awardlist = AwardManager.GetAwardList();
                         PrintAwardList(awardlist);
                         int selectedAwardID = int.Parse(Console.ReadLine());
                         Console.WriteLine("Select user by ID:");
                         ICollection<User> userlist = UserManager.GetAllUsers();
                         PrintAllUsersInfo(userlist);
                         int selectedUser = int.Parse(Console.ReadLine());
-                        UserManager.AwardUser(selectedAwardID, selectedUser);
+                        AwardManager.AwardUser(selectedAwardID, selectedUser);
                         SelectAction();
                         break;
                     case 8:
