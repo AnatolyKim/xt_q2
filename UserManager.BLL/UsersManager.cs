@@ -14,16 +14,16 @@ namespace UserManager.BLL
         public string ErrorMessage { get; private set; }
         public void AddUser(User user)
         {
-            MemoryStorage.Add(user);
+            JsonStorage.Add(user);
         }
 
         public bool RemoveUser(string ID)
         {
             if (int.TryParse(ID, out int id)
                 && id > 0
-                && id <= MemoryStorage.Users.Last().ID)
+                && id <= JsonStorage.Users.Last().ID)
             {
-                MemoryStorage.Remove(id);
+                JsonStorage.Remove(id);
                 return true;
             }
             else
@@ -36,7 +36,7 @@ namespace UserManager.BLL
 
         public ICollection<User> GetAllUsers()
         {
-            return MemoryStorage.GetAll();
+            return JsonStorage.GetAll();
         }
 
     }

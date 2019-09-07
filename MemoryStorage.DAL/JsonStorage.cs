@@ -9,13 +9,13 @@ using System.Runtime.Serialization.Json;
 
 namespace Storage.DAL
 {
-    public static class MemoryStorage
+    public static class JsonStorage
     {
         static string writePath = @"D:\Sample\Users.json";
         static string writeAwardsPath = @"D:\Sample\Awards.json";
         public static List<User> Users { get; private set; }
         public static List<Award> AwardList { get; private set; }
-        static MemoryStorage()
+        static JsonStorage()
         {
             Users = new List<User>();
             AwardList = new List<Award>();
