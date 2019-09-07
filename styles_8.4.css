@@ -1,0 +1,48 @@
+#mainpointer{
+  width: 0; 
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 50px solid #89B8D6;
+  margin-top: 200px;
+  position:absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top:50px;
+}
+#basepointer{
+  width: 0px; 
+  height: 0px;
+  border-left: 65px solid transparent;
+  border-right: 65px solid transparent;
+  border-bottom: 65px solid #CADFE8;
+  position: absolute;
+  margin-top:-8px;
+  margin-left:-65px;
+  position:absolute;
+  z-index: -1;
+}
+
+#textbox{
+  width:90%;
+  height: 100px;
+  margin: auto;
+  border: 6px solid #CADFE8;
+  margin-top:94px;
+}
+div>p{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  line-height: 100px;
+  background-color: #89B8D6;
+  margin-top:0px;
+  color:white;
+  font-size: 150%;
+}
+body{
+  background-color: #343434;
+}
