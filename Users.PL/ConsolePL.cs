@@ -88,7 +88,7 @@ namespace Users.PL
                         ICollection<User> userlist = UserManager.GetAllUsers();
                         PrintAllUsersInfo(userlist);
                         int selectedUser = int.Parse(Console.ReadLine());
-                        AwardManager.AwardUser(selectedAwardID, selectedUser);
+                        UserManager.AwardUser(selectedAwardID, selectedUser);
                         SelectAction();
                         break;
                     case 8:

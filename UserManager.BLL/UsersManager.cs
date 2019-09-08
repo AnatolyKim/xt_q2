@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Users.Entities;
-using Storage.DAL;
 
 
 namespace UserManager.BLL
@@ -14,16 +13,16 @@ namespace UserManager.BLL
         public string ErrorMessage { get; private set; }
         public void AddUser(User user)
         {
-            JsonStorage.Add(user);
+            Dependensies.LoosingCouplingObjects.UserStorage.Add(user);
         }
 
         public bool RemoveUser(string ID)
         {
             if (int.TryParse(ID, out int id)
                 && id > 0
-                && id <= JsonStorage.Users.Last().ID)
+                && id <= Dependensies.LoosingCouplingObjects.UserStorage.Users.Last().ID)
             {
-                JsonStorage.Remove(id);
+                Dependensies.LoosingCouplingObjects.UserStorage.Remove(id);
                 return true;
             }
             else
@@ -36,8 +35,16 @@ namespace UserManager.BLL
 
         public ICollection<User> GetAllUsers()
         {
-            return JsonStorage.GetAll();
+            return Dependensies.LoosingCouplingObjects.UserStorage.GetAll();
         }
 
+        public void AwardUser(int awardID, int userID)
+        {
+            foreach (var user in Dependensies.LoosingCouplingObjects.UserStorage.Users.Where(User => User.ID == userID).ToArray())
+            {
+                foreach (var n in Dependensies.LoosingCouplingObjects.AwardStorage.AwardList.Where(Award => Award.AwardID == awardID).ToArray()) user.Awards.Add(n.Title);
+            }
+            Dependensies.LoosingCouplingObjects.UserStorage.AwardUser(Dependensies.LoosingCouplingObjects.UserStorage.Users);
+        }
     }
 }

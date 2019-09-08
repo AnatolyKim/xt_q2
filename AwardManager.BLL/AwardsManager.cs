@@ -14,15 +14,15 @@ namespace AwardManager.BLL
 
         public void AddAward(Award award)
         {
-            JsonStorage.AddAward(award);
+            Dependensies.LoosingCouplingObjects.AwardStorage.AddAward(award);
         }
         public bool RemoveAward(string ID)
         {
             if (int.TryParse(ID, out int id)
                 && id > 0
-                && id <= JsonStorage.AwardList.Last().AwardID)
+                && id <= Dependensies.LoosingCouplingObjects.AwardStorage.AwardList.Last().AwardID)
             {
-                JsonStorage.RemoveAward(id);
+                Dependensies.LoosingCouplingObjects.AwardStorage.RemoveAward(id);
                 return true;
             }
             else
@@ -34,12 +34,8 @@ namespace AwardManager.BLL
         }
         public ICollection<Award> GetAwardList()
         {
-            return JsonStorage.GetAllAwards();
+            return Dependensies.LoosingCouplingObjects.AwardStorage.GetAllAwards();
         }
 
-        public void AwardUser(int award, int userID)
-        {
-            JsonStorage.AwardUser(award, userID);
-        }
     }
 }
